@@ -3,12 +3,20 @@
 #ifndef REGEX_H
 #define REGEX_H
 
-int grep(char *regexp, FILE *f, char *name);
+struct Options {
+  bool negate = false;
+  bool caseinsensitive = false;
+  bool printlinenumbers = false;
+};
 
-int match(char *regexp, char *text);
+int grep(char *regexp, FILE *f, char *name, Options opts);
 
-int matchhere(char *regexp, char *text);
+int match(char *regexp, char *text, Options opts);
 
-int matchstar(int c, char *regexp, char *text);
+int matchhere(char *regexp, char *text, Options opts);
+
+int matchstar(int c, char *regexp, char *text, Options opts);
+
+int matchplus(int c, char *regexp, char *text, Options opts);
 
 #endif
