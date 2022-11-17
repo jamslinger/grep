@@ -29,6 +29,13 @@ int matchhere(char *regexp, char *text)
   {
     return matchstar(regexp[0], regexp + 2, text);
   }
+  if (regexp[1] == '+')
+  {
+    if (regexp[0] == '.' || regexp[0] == *text) {
+        return matchstar(regexp[0], regexp + 2, text);
+    }
+    return 0;
+  }
   if (regexp[0] == '$' && regexp[1] == '\0')
   {
     return *text == '\0';
